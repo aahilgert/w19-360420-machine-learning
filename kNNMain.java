@@ -54,7 +54,7 @@ public class kNNMain{
 	//DataPoint[] closestNeighbours = objectClassifier.getNearestNeighbours(full,point);
 	
 	
-
+	
 
     // TASK 6: loop over the datapoints in the held out test set, and make predictions for Each
     // point based on nearest neighbors in training set. Calculate accuracy of model.
@@ -88,6 +88,8 @@ public class kNNMain{
 	{
 		
 		List<DataPoint> full = DataSet.readDataSet(args[0]);
+		
+		DataSet.printLabelFrequencies(full);
 		
 		List<DataPoint> testData = DataSet.getTestSet(full,percentTestData);
 		
