@@ -245,6 +245,19 @@ public class DataSet {
               + Arrays.toString(i.getX()));
     }
   }
-  ////////////////////////////////////////////////////////////////////////////
+  
+  public static double euclideanDistance(DataPoint point1, DataPoint point2)
 
+  {
+	  
+	  double sum = 0;
+	  
+	  for(int i=0; i<point1.x.length; i++)
+	  {
+	  	sum += (point1.x[i] - point2.x[i]) * (point1.x[i] - point2.x[i]);
+	  }
+	  
+	  
+	  return Math.sqrt(sum);
+  }
 }
