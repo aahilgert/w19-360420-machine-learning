@@ -59,11 +59,23 @@ public class kNNMain{
     // TASK 6: loop over the datapoints in the held out test set, and make predictions for Each
     // point based on nearest neighbors in training set. Calculate accuracy of model.
 	
-	int totalIterations = 1000;
+	
 	
 	double[] accuracyPerIteration = new double[totalIterations];
 	
+	double[] recallAccuracyPerIteration = new double[totalIterations];
+		
+	double[] precisionPerIteration = new double[totalIterations];
+	
 	double correctCounter = 0.0;
+	
+	double correctMalignantCounter = 0.0;
+	
+	double falseMalignantCounter = 0.0;
+	
+	double correctBenignCounter = 0.0;
+	
+	double falseBenignCounter = 0.0;
 	
 	double accuracy = 0.0;
 
@@ -91,10 +103,28 @@ public class kNNMain{
 			if ((objectClassifier.predict(trainingData, testData.get(i))).equals(testData.get(i).getLabel()))
 			{
 				correctCounter++;
-				
-				
-				
 			}
+			
+			if ((objectClassifier.predict(trainingData, testData.get(i))).equals(testData.get(i).getLabel())&&(objectClassifier.predict(trainingData, testData.get(i))).equals("malignant"))
+			{
+				correctMalignantCounter++;
+			}
+			
+			if ((!(objectClassifier.predict(trainingData, testData.get(i))).equals(testData.get(i).getLabel()))&&(objectClassifier.predict(trainingData, testData.get(i))).equals("malignant"))
+			{
+				falseMalignantCounter++;
+			}
+			
+			if ((objectClassifier.predict(trainingData, testData.get(i))).equals(testData.get(i).getLabel())&&(objectClassifier.predict(trainingData, testData.get(i))).equals("benign"))
+			{
+				correctBenignCounter++;
+			}
+			
+			if ((!(objectClassifier.predict(trainingData, testData.get(i))).equals(testData.get(i).getLabel()))&&(objectClassifier.predict(trainingData, testData.get(i))).equals("benign"))
+			{
+				falseBenignCounter++;
+			}
+			
 		}
 		
 		System.out.println("completed:" + i + " of " + w );
@@ -102,19 +132,31 @@ public class kNNMain{
 	}
 	
 	accuracy = correctCounter/testData.size()*100.0;
+	
+	
 	accuracyPerIteration[w] = accuracy;
+	recallAccuracyPerIteration[w] = correctMalignantCounter/(correctMalignantCounter+falseBenignCounter)*100.0;
+	precisionPerIteration[w] = correctMalignantCounter/(correctMalignantCounter+falseMalignantCounter)*100.0;
+	
 	correctCounter = 0.0;
-	
-	
-	
-	
+	correctMalignantCounter = 0.0;
+	falseMalignantCounter = 0.0;
+	correctBenignCounter = 0.0;
+	falseBenignCounter = 0.0;
+		
+		
    }
 	
 	
 	System.out.println("average accuracy: " + mean(accuracyPerIteration));
-
-	
 	System.out.println("standard deviation: " + standardDeviation(accuracyPerIteration));
+	
+	System.out.println("average accuracy: " + mean(recallAccuracyPerIteration));
+	System.out.println("standard deviation: " + standardDeviation(recallAccuracyPerIteration));
+	
+	System.out.println("average accuracy: " + mean(precisionPerIteration));
+	System.out.println("standard deviation: " + standardDeviation(precisionPerIteration));
+	
   }
   
   
