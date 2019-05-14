@@ -27,9 +27,13 @@ public class kNNMain{
 		
 	//List<DataPoint> trainingData = DataSet.getTrainingSet(full,.8);
 	
-		
+	//initial values 
 	
-		
+	int k = 3;
+	
+	int totalIterations = 1000;
+	
+	double percentDistribution = 0.3;
 	
 
 
@@ -43,7 +47,7 @@ public class kNNMain{
 
     // TASK 5: Use the KNNClassifier class to determine the k nearest neighbors to a given DataPoint,
     // and make and print a predicted target label
-	int k = 3;
+	
 	
 	KNNClassifier objectClassifier = new KNNClassifier(k);
 	
@@ -63,7 +67,7 @@ public class kNNMain{
 	
 	double accuracy = 0.0;
 
-	double percentTestData = 0.1;
+	double percentTestData = percentDistribution;
 	
 	double percentTrainingData = 1.0 - percentTestData;
 	
