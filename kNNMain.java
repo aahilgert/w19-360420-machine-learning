@@ -153,10 +153,10 @@ public class kNNMain{
 	System.out.println("average accuracy: " + mean(accuracyPerIteration));
 	System.out.println("standard deviation: " + standardDeviation(accuracyPerIteration));
 	
-	System.out.println("average accuracy: " + mean(recallAccuracyPerIteration));
+	System.out.println("average recall: " + mean(recallAccuracyPerIteration));
 	System.out.println("standard deviation: " + standardDeviation(recallAccuracyPerIteration));
 	
-	System.out.println("average accuracy: " + mean(precisionPerIteration));
+	System.out.println("average precision: " + mean(precisionPerIteration));
 	System.out.println("standard deviation: " + standardDeviation(precisionPerIteration));
 	
   }
